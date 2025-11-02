@@ -3,6 +3,7 @@ from rocketcea.cea_obj import CEA_Obj
 import matplotlib.pyplot as plt
 import throat_sizing
 import plot_OF
+# test 2
 
 oxName = 'GOX'
 fuelName = 'RP1'
@@ -18,6 +19,7 @@ def main():
     # EPS of 1 because no diverging section
     plot_OF.plot_OF(pc, 1)
     print(Dt_in)
+    print("Hello World")
 
 if __name__ == "__main__":
     main()

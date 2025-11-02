@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 oxName = 'GOX'
 fuelName = 'RP1'
 pamb = 14.7 # psia
+# This is a test
 
 def plot_OF(pc, eps):
     # creates CEA object with Ox and Fuel
