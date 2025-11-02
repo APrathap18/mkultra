@@ -15,15 +15,15 @@ def throat_sizing_function(of, pc, F):
     # get force coefficient
     cf = output[0]
     # get c* (need to convert ft/s to m/s)
-    cstar = cea_obj.get_Cstar(Pc = pc, MR = of) * 0.3048
+    cstar = cea_obj.get_Cstar(Pc = pc, MR = of) * 0.3048 #m/s
     # calculate isp
-    isp = cstar * cf / 9.80655
+    isp = cstar * cf #s
     # get exhaust velocity
-    v_e = 0.9 * isp
+    v_e = 0.9 * isp # m/s (assumed 90% of ideal)
     # calculate mdot
-    mdot = F/v_e
+    mdot = F/v_e #kg/s
     # convert pc to pascals
-    pc_pa = 6894.76 * pc
+    pc_pa = 6894.76 * pc #Pa
     # calculate area of the throat (m^2)
     At = mdot * cstar/pc_pa
     # calculate diameter of throat (m)
