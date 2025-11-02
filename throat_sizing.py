@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 oxName = 'GOX'
 fuelName = 'RP1'
 pamb = 14.7 # psia
+m_sq_to_in_sq = 1550 #1 m^2 = 1550 in^2
 
 # This is a function that takes O/F ratio, chamber pressure (psia), 
 # and thrust (N) as inputs, and outputs the diameter (in) of the throat 
@@ -32,12 +33,16 @@ def throat_sizing_function(of, pc, F):
     Dt_in = Dt_m / 0.3048 * 12
 
     print("----------------------------------")
+    print("Throat Sizing Parameters")
+    print("----------------------------------")
     print(f"ISP (s): {isp}")
     print(f"C* (m/s): {cstar}")
     print(f"Exhaust Velocity (m/s): {v_e}")
     print(f"M Dot (kg/s): {mdot}")
     print(f"Throat Area (m^2): {At}")
+    print(f"Throat Area (in^2): {At * m_sq_to_in_sq}")
     print(f"Throat Diameter (in): {Dt_in}")
     print("----------------------------------")
 
-    return(Dt_in)
+    
+    return(At * m_sq_to_in_sq)
