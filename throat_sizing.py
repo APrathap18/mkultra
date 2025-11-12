@@ -5,6 +5,8 @@ oxName = 'GOX'
 fuelName = 'RP1'
 pamb = 14.7 # psia
 m_sq_to_in_sq = 1550 #1 m^2 = 1550 in^2
+gox_density = 1.43 # kg/m^3
+rp1_density = 810 # kg/m^3
 
 # This is a function that takes O/F ratio, chamber pressure (psia), 
 # and thrust (N) as inputs, and outputs the diameter (in) of the throat 
@@ -39,6 +41,10 @@ def throat_sizing_function(of, pc, F):
     print(f"C* (m/s): {cstar}")
     print(f"Exhaust Velocity (m/s): {v_e}")
     print(f"M Dot (kg/s): {mdot}")
+    print(f"GOX Volumetric Flow Rate (m^3/s): {mdot/gox_density}")
+    print(f"GOX Volumetric Flow Rate (in^3/s): {61020 * mdot/gox_density}")
+    print(f"RP1 Volumetric Flow Rate (m^3/s): {mdot/rp1_density}")
+    print(f"RP1 Volumetric Flow Rate (in^3/s): {61020 * mdot/rp1_density}")
     print(f"Throat Area (m^2): {At}")
     print(f"Throat Area (in^2): {At * m_sq_to_in_sq}")
     print(f"Throat Diameter (in): {Dt_in}")
