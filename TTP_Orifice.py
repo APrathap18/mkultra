@@ -37,7 +37,7 @@ def orifice_area(A_t):
     print(f"Chamber Volume: {V_c} in^3")
     print("Chamber Diameter: 1.5 in")
 
-    A_c = math.pi * D_c / 4
+    A_c = math.pi * D_c**2 / 4
 
     print(f"Chamber Area: {A_c} in^2")
 
