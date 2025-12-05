@@ -1,12 +1,8 @@
 import numpy as np
 from rocketcea.cea_obj import CEA_Obj
 import matplotlib.pyplot as plt
-oxName = 'GOX'
-fuelName = 'RP1'
-pamb = 14.7 # psia
-# This is a test
 
-def plot_OF(pc, eps):
+def plot_OF(pc, eps, oxName, fuelName, pamb):
     # creates CEA object with Ox and Fuel
     cea_obj = CEA_Obj(oxName = oxName, fuelName = fuelName)
 
