@@ -3,7 +3,7 @@ import math as math
 from rocketcea.cea_obj import CEA_Obj
 import matplotlib.pyplot as plt
 
-def orifice_area(A_t, of, pc, mdot, d_c, p1, num_rp1_orifice, num_gox_orifice, rhoRP1, rhoGOX, L_star, g):
+def orifice_area(A_t, of, pc, mdot, d_c, p1, num_rp1_orifice, num_gox_orifice, rhoRP1, rhoGOX, L_star, g, throat_dia):
     #RP-1, incompressible flow
     orifice_rp1 = mdot/(of * math.sqrt(2*rhoRP1*(p1 - pc))) # finds orifice area of RP1 in m^2
 
@@ -23,7 +23,15 @@ def orifice_area(A_t, of, pc, mdot, d_c, p1, num_rp1_orifice, num_gox_orifice, r
 
     L_c = V_c/(1.1 * A_c)
 
-    print(f"Chamber Length: {L_c} in")
+    L_converg_equiv = V_c/A_c - L_c # the volume of the converging section contributes the same amount as a cylinder of diameter d_c and length L_conv_equiv
+
+    V_converge = math.pi * (d_c / 2)**2 * L_converg_equiv
+
+    length_converging = 3 * V_converge / (math.pi * ((d_c/2) ** 2 + (throat_dia/2) * (d_c/2) + (throat_dia/2) ** 2)) # treats converging section as a cone with flat top (large radius is chamber side, small radius is throat side), and solves for "height"
+
+
+    print(f"Chamber Length (Straight): {L_c} in")
+    print(f"Chamber Length (Converging): {length_converging} in")
 
     print("----------------------------------")
 
