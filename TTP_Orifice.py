@@ -4,8 +4,10 @@ from rocketcea.cea_obj import CEA_Obj
 import matplotlib.pyplot as plt
 
 def orifice_area(A_t, of, pc, mdot, d_c, p1, num_rp1_orifice, num_gox_orifice, rhoRP1, rhoGOX, L_star, g, throat_dia):
+    mdot_fuel = mdot /(1+of)
+    mdot_ox = mdot - mdot_fuel
     #RP-1, incompressible flow
-    orifice_rp1 = mdot/(of * math.sqrt(2*rhoRP1*(p1 - pc))) # finds orifice area of RP1 in m^2
+    orifice_rp1 = mdot_fuel/(0.7 * math.sqrt(2*rhoRP1*(p1 - pc))) # finds orifice area of RP1 in m^2
 
     print("Chamber Sizing Parameters")
     print("----------------------------------")
@@ -45,7 +47,7 @@ def orifice_area(A_t, of, pc, mdot, d_c, p1, num_rp1_orifice, num_gox_orifice, r
 
     #GOX, compressible flow
     #mdot = Cd*A * sqrt(g*dens*P0((2/g+1))^((g+1)/(g-1))) #compressible, kg/s
-    orifice_gox = mdot*of/(math.sqrt(g*rhoGOX*p1*((2/g+1))**((g+1)/(g-1))))
+    orifice_gox = mdot_ox/(math.sqrt(g*rhoGOX*p1*((2/g+1))**((g+1)/(g-1))))
     print(f"GOX Orifice Count: {num_gox_orifice}")
     print(f"GOX Orifice Area: {orifice_gox/10**-6} mm^2")  #output in mm^2
     print(f"GOX Orifice Area (TOTAL, assuming circle): {orifice_gox*1550} in^2") # output in in^2 

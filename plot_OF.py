@@ -51,28 +51,28 @@ def plot_OF(pc, eps, oxName, fuelName, pamb):
 
     # suplot 1, chamber temp
     axes[0].plot(of_list, comb_temp, marker='o', linestyle='-')
-    axes[0].set_ylabel('Chamber Temp (K)')
+    axes[0].set_ylabel('Chamber Temp [K]')
     axes[0].grid(True)
-    axes[0].set_title('Chamber Temp (K) vs. O/F')
+    axes[0].set_title('Chamber Temp [K] vs. O/F')
 
     # subplot 2, throat temp
     axes[1].plot(of_list, throat_temp, marker='o', linestyle='-')
-    axes[1].set_ylabel('Throat Temp (K)')
+    axes[1].set_ylabel('Throat Temp [K]')
     axes[1].grid(True)
-    axes[1].set_title('Throat Temp (K) vs. O/F')
+    axes[1].set_title('Throat Temp [K] vs. O/F')
 
     # subplot 3, exit temp
     axes[2].plot(of_list, exhaust_temp, marker='o', linestyle='-')
-    axes[2].set_ylabel('Exit Temp (K)')
+    axes[2].set_ylabel('Exit Temp [K]')
     axes[2].grid(True)
-    axes[2].set_title('Exit Temp (K) vs. O/F')
+    axes[2].set_title('Exit Temp [K] vs. O/F')
 
     # subplot 4, isp
     axes[3].plot(of_list, isp_list, marker='o', linestyle='-')
-    axes[3].set_xlabel('O/F (MR)')
-    axes[3].set_ylabel('Isp (s)')
+    axes[3].set_xlabel('O/F [MR]')
+    axes[3].set_ylabel('Isp [s]')
     axes[3].grid(True)
-    axes[3].set_title('Isp (s) vs. O/F')
+    axes[3].set_title('Isp [s] vs. O/F')
 
     # show plot
     plt.tight_layout()
