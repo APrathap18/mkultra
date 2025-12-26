@@ -72,7 +72,7 @@ def plot_OF(pc, eps, oxName, fuelName, pamb):
     axes[3].set_xlabel('O/F [MR]')
     axes[3].set_ylabel('Isp [s]')
     axes[3].grid(True)
-    axes[3].set_title('Isp [] vs. O/F')
+    axes[3].set_title('Isp [s] vs. O/F')
 
     # show plot
     plt.tight_layout()
