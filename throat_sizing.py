@@ -24,6 +24,11 @@ def throat_sizing_function(of, pc, F, eps, pamb, gox_density, rp1_density, oxnam
                         # general cstar efficiency
     # calculate mdot
     mdot = F/v_e #kg/s
+
+    # mdot for gox and rp1 specifically
+    gox_mdot = mdot * of /(1+of)
+    rp1_mdot = mdot / (1+of)
+
     # convert pc to pascals
     pc_pa = 6894.76 * pc #Pa
     # calculate area of the throat (m^2)
@@ -48,12 +53,12 @@ def throat_sizing_function(of, pc, F, eps, pamb, gox_density, rp1_density, oxnam
     print(f"C* (m/s): {cstar}")
     print(f"Exhaust Velocity (m/s): {v_e}")
     print(f"M Dot (kg/s): {mdot}")
-    print(f"GOX M Dot (kg/s): {mdot * of}")
-    print(f"RP1 M Dot (kg/s): {mdot / of}")
-    print(f"GOX Volumetric Flow Rate (m^3/s): {mdot/gox_density}")
-    print(f"GOX Volumetric Flow Rate (in^3/s): {61020 * mdot/gox_density}")
-    print(f"RP1 Volumetric Flow Rate (m^3/s): {mdot/rp1_density}")
-    print(f"RP1 Volumetric Flow Rate (in^3/s): {61020 * mdot/rp1_density}")
+    print(f"GOX M Dot (kg/s): {gox_mdot}")
+    print(f"RP1 M Dot (kg/s): {rp1_mdot}")
+    print(f"GOX Volumetric Flow Rate (m^3/s): {gox_mdot/gox_density}")
+    print(f"GOX Volumetric Flow Rate (in^3/s): {61020 * gox_mdot/gox_density}")
+    print(f"RP1 Volumetric Flow Rate (m^3/s): {rp1_mdot/rp1_density}")
+    print(f"RP1 Volumetric Flow Rate (in^3/s): {61020 * rp1_mdot/rp1_density}")
     print("----------------------------------")
     print("Temperature Parameters")
     print("----------------------------------")

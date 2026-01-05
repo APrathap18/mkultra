@@ -9,17 +9,19 @@ import TTP_Orifice
 oxName = 'GOX'
 fuelName = 'RP1'
 pamb = 14.7 # psia
-g = 1.26 #ox
+g = 1.4 #ox
 rhoRP1 = 810 #kg/m^3
-rhoGOX = 1.429 #kg/m^3, 8.9497e-1
+rhoGOX = 27.54 #kg/m^3, 8.9497e-1
 L_star = 45 #in
 
 def main():
     of = 1.4
     pc = 150 # psia
+    pc_pa = pc * 6894.76 # Pa
     F = 15 # N
     d_c = 1.25 # in
-    p1 = 300 # psia
+    p1 = 300 # psia (feed pressure)
+    p1_pa = p1 * 6894.76 # Pa
     num_rp1_orifice = 4 
     num_gox_orifice = 4
     eps = 1
@@ -29,7 +31,7 @@ def main():
     # EPS of 1 because no diverging section
     plot_OF.plot_OF(pc, 1, oxName, fuelName, pamb)
 
-    TTP_Orifice.orifice_area(At_in, of, pc, m_dot, d_c, p1, num_rp1_orifice, num_gox_orifice, rhoRP1, rhoGOX, L_star, g, throat_dia)
+    TTP_Orifice.orifice_area(At_in, of, pc_pa, m_dot, d_c, p1_pa, num_rp1_orifice, num_gox_orifice, rhoRP1, rhoGOX, L_star, g, throat_dia)
     #print(Dt_in)
 
 if __name__ == "__main__":

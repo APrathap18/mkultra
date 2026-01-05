@@ -3,11 +3,12 @@ import math as math
 from rocketcea.cea_obj import CEA_Obj
 import matplotlib.pyplot as plt
 
-def orifice_area(A_t, of, pc, mdot, d_c, p1, num_rp1_orifice, num_gox_orifice, rhoRP1, rhoGOX, L_star, g, throat_dia):
+def orifice_area(A_t, of, pc, mdot, d_c, p1, num_rp1_orifice, num_gox_orifice, rhoRP1, rhoGOX, L_star, g, throat_dia, Cd = 0.8):    
     mdot_fuel = mdot /(1+of)
     mdot_ox = mdot - mdot_fuel
-    #RP-1, incompressible flow
-    orifice_rp1 = mdot_fuel/(0.7 * math.sqrt(2*rhoRP1*(p1 - pc))) # finds orifice area of RP1 in m^2
+
+    # RP1 Orifice Sizing
+    orifice_rp1 = mdot_fuel / (Cd * np.sqrt(2 * rhoRP1 * (p1 - pc))) # Total fuel injection area (m^2)
 
     print("Chamber Sizing Parameters")
     print("----------------------------------")
@@ -43,11 +44,18 @@ def orifice_area(A_t, of, pc, mdot, d_c, p1, num_rp1_orifice, num_gox_orifice, r
     print(f"RP1 Orifice Area: {orifice_rp1/10**-6} mm^2")  #output in mm^2
     print(f"RP1 Orifice Area (TOTAL, assuming square): {orifice_rp1*1550} in^2") # output in in^2 
     print(f"RP1 Orifice Area (per orifice): {orifice_rp1*1550/num_rp1_orifice} in")
-    print(f"RP1 Orifice Diameter (per orifice): {math.sqrt(orifice_rp1*1550/num_rp1_orifice)} in")
+    print(f"RP1 Orifice Side Length (per orifice): {math.sqrt(orifice_rp1*1550/num_rp1_orifice)} in")
 
-    #GOX, compressible flow
-    #mdot = Cd*A * sqrt(g*dens*P0((2/g+1))^((g+1)/(g-1))) #compressible, kg/s
-    orifice_gox = mdot_ox/(math.sqrt(g*rhoGOX*p1*((2/g+1))**((g+1)/(g-1))))
+    # GOX Orifice Sizing
+    # Critical pressure ratio
+    p_cr = (2 / (g + 1)) ** (g / (g -1))
+
+    if pc / p1 < p_cr: # Choked condition
+        orifice_gox = mdot_ox / (Cd * np.sqrt(g * rhoGOX * p1 * (2 / (g + 1)) ** ((g + 1)/(g - 1))))
+
+    else: # Unchoked condition
+        orifice_gox = mdot_ox / (Cd * np.sqrt(2 * rhoGOX * p1 * (g / (g-1)) * (((pc/p1) ** (2/g)) - ((pc/p1) ** ((g + 1)/g)))))
+    
     print(f"GOX Orifice Count: {num_gox_orifice}")
     print(f"GOX Orifice Area: {orifice_gox/10**-6} mm^2")  #output in mm^2
     print(f"GOX Orifice Area (TOTAL, assuming circle): {orifice_gox*1550} in^2") # output in in^2 
