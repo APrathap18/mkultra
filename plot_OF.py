@@ -30,9 +30,10 @@ def plot_OF(pc, eps, oxName, fuelName, pamb):
 
             # get fuel coefficient
             Cf = cea_obj.get_PambCf(Pamb = 14.7, Pc = pc, MR = of, eps = eps)[0]
-
+            
             # get cstar
             cstar = cea_obj.get_Cstar(Pc = pc, MR = of) * 0.3048
+            cstar = cstar * 0.7 # Efficiency factor
 
             # add isp to list
             isp_list.append(cstar * Cf / 9.80655)

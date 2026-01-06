@@ -38,7 +38,11 @@ def throat_sizing_function(of, pc, F, eps, pamb, gox_density, rp1_density, oxnam
     # convert to inches
     Dt_in = Dt_m / 0.3048 * 12
     
-    T_c, T_t, T_e = cea_obj.get_Temperatures(Pc=pc, MR=of) #K
+    T_c, T_t, T_e = cea_obj.get_Temperatures(Pc=pc, MR=of, eps = eps) #R
+
+    T_ck = T_c * 5/9
+    T_tk = T_t * 5/9
+    T_ek = T_e * 5/9
 
     print("----------------------------------")
     print("Throat Sizing Parameters")
@@ -62,9 +66,9 @@ def throat_sizing_function(of, pc, F, eps, pamb, gox_density, rp1_density, oxnam
     print("----------------------------------")
     print("Temperature Parameters")
     print("----------------------------------")
-    print(f"Combustion Temperature (K): {T_c}")
-    print(f"Throat Temperature (K): {T_t}")
-    print(f"Exhaust Temperature (K): {T_e}")
+    print(f"Combustion Temperature (K): {T_ck}")
+    print(f"Throat Temperature (K): {T_tk}")
+    print(f"Exhaust Temperature (K): {T_ek}")
     print("----------------------------------")
 
     return(At * m_sq_to_in_sq, mdot, Dt_in)
