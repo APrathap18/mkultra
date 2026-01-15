@@ -1,0 +1,7 @@
+problem  rkt fr o/f=   1.2000 p,bar=    17.24
+subar=
+supar=    2.6951     2.7053     2.7156     2.7260     2.7363     2.7467     2.7571     2.7675     2.7779     2.7883 
+ reactants 
+ reac fu = C2H5OH(L) h,j/mol=-1367000 w%=0.5 t(k)=293.15 ox = O2(L) w%=0.5 t(k)=90 
+ output plot trans mach gamma t visc Cp p Ae/At Prandtl
+ end

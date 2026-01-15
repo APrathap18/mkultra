@@ -1,0 +1,7 @@
+problem  rkt fr o/f=   1.4000 p,bar=    10.34
+subar=
+supar=   34.4398    34.4398    34.4398    34.4398    34.4398    34.4398    34.4398    34.4398    34.4398    34.4398 
+ reactants 
+ reac fu = RP-1 w%=0.5 t(k)=293.15 ox = O2 w%=0.5 t(k)=293.15 
+ output plot trans mach gamma t visc Cp p Ae/At Prandtl
+ end
