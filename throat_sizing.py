@@ -16,9 +16,9 @@ def throat_sizing_function(of, pc, F, eps, pamb, gox_density, rp1_density, oxnam
     cf = output[0]
     # get c* (need to convert ft/s to m/s)
     cstar = cea_obj.get_Cstar(Pc = pc, MR = of) * 0.3048 #m/s
-    cstar = cstar * 0.7 # Efficiency factor
+    cstar = cstar * 0.8 # Efficiency factor
     # calculate isp
-    isp = cstar * cf / 9.80655 # s
+    isp = cea_obj.get_Throat_Isp(Pc=pc, MR=of, frozen=0)
     # get exhaust velocity
     v_e = isp * 9.80655 # m/s (assumed 90% of ideal) max - removed 0.9 , just including a
                         # general cstar efficiency

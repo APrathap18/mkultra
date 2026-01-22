@@ -28,15 +28,19 @@ def plot_OF(pc, eps, oxName, fuelName, pamb):
             throat_temp.append(temp[1] * 5/9)
             exhaust_temp.append(temp[2] * 5/9)
 
+
+            isp = cea_obj.get_Throat_Isp(Pc=pc, MR=of, frozen=0)
+
+
             # get fuel coefficient
-            Cf = cea_obj.get_PambCf(Pamb = 14.7, Pc = pc, MR = of, eps = eps)[0]
+            # Cf = cea_obj.get_PambCf(Pamb = 14.7, Pc = pc, MR = of, eps = eps)[0]
             
-            # get cstar
-            cstar = cea_obj.get_Cstar(Pc = pc, MR = of) * 0.3048
-            cstar = cstar * 0.7 # Efficiency factor
+            # # get cstar
+            # cstar = cea_obj.get_Cstar(Pc = pc, MR = of) * 0.3048
+            # cstar = cstar * 0.8 # Efficiency factor
 
             # add isp to list
-            isp_list.append(cstar * Cf / 9.80655)
+            isp_list.append(isp)
         except Exception as e:
             # prevents errors
             print(f"Skipping MR = {of:.2f}: {e}")

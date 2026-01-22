@@ -23,7 +23,7 @@ def main():
     p1 = 300 # psia (feed pressure)
     p1_pa = p1 * 6894.76 # Pa
     num_rp1_orifice = 4 
-    num_gox_orifice = 4
+    num_gox_orifice = 3
     eps = 1
 
     [At_in, m_dot, throat_dia] = throat_sizing.throat_sizing_function(of, pc, F, eps, pamb, rhoGOX, rhoRP1, oxName, fuelName) # in^2
